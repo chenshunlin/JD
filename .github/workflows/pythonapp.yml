@@ -15,7 +15,4 @@ jobs:
         python-version: 3.7
     - name: Update paper list
       run: |
-        cd paper_infos
-        python automl_page.py
-        cd ../nas_paper
-        python nas_page.py
+        python U.py
