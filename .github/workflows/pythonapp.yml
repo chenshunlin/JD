@@ -1,21 +1,29 @@
-name: Test
+name: JD_Sign_Action
 
-on: [push, pull_request]
+on:
+  repository_dispatch:
+  release:
+    types: published
+  # push:
+  #   branches:
+  #     - master
+  schedule:
+    - cron: 0 20 * * *
+  watch:
+    types: started
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
+    build:
+        runs-on: ubuntu-latest
 
-      - name: Setup Python
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-
-      - name: Install dependencies with pipenv
-        run: |
-          pip install pipenv
-          pipenv install --deploy --dev
-
-      - run: pipenv run python U.PY
+        steps:
+            - name: Checkout codes
+              uses: actions/checkout@v2
+              
+            - name: Use Node.js
+              uses: actions/setup-python@v1
+              with:
+                python-version: 3.7
+                
+            - name: Run install
+              run: python U.py
