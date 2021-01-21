@@ -34,6 +34,7 @@ jobs:
         python -m pip install urllib2
         python -m pip install re
         python -m pip install json
+        python -m pip install requests
     # You can test your matrix by printing the current Python version
     - name: Display Python version
       run: python U.py
